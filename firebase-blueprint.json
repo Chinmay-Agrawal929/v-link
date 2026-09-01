@@ -1,0 +1,76 @@
+{
+  "project": "v-link",
+  "collections": [
+    {
+      "name": "users",
+      "path": "users/{userId}",
+      "description": "Stores user profiles including their role, details, and networking preferences.",
+      "fields": [
+        { "name": "uid", "type": "string", "description": "Firebase Auth UID" },
+        { "name": "role", "type": "string", "description": "User role: Student, Faculty, Admin" },
+        { "name": "name", "type": "string", "description": "Full name" },
+        { "name": "regNo", "type": "string", "description": "Registration number" },
+        { "name": "branch", "type": "string", "description": "Academic branch" },
+        { "name": "avatarUrl", "type": "string", "description": "Avatar image URL" },
+        { "name": "skills", "type": "array", "description": "Array of skill strings" },
+        { "name": "githubConnected", "type": "boolean", "description": "Is GitHub connected?" }
+      ],
+      "access": {
+        "read": "Authenticated users can read any profile.",
+        "create": "Authenticated users can create their own profile.",
+        "update": "Users can only update their own profile.",
+        "delete": "No deletion allowed via client."
+      }
+    },
+    {
+      "name": "posts",
+      "path": "posts/{postId}",
+      "description": "Stores social posts made by users.",
+      "fields": [
+        { "name": "authorId", "type": "string", "description": "User ID of the author" },
+        { "name": "authorName", "type": "string", "description": "Name of the author" },
+        { "name": "content", "type": "string", "description": "Post content" },
+        { "name": "likes", "type": "number", "description": "Number of likes" },
+        { "name": "timestamp", "type": "timestamp", "description": "Creation timestamp" }
+      ],
+      "access": {
+        "read": "Authenticated users can read all posts.",
+        "create": "Authenticated users can create posts with their own authorId.",
+        "update": "Users can update likes, or their own posts.",
+        "delete": "Users can delete their own posts."
+      }
+    },
+    {
+      "name": "chats",
+      "path": "chats/{chatId}",
+      "description": "Stores chat sessions between users.",
+      "fields": [
+        { "name": "participants", "type": "array", "description": "Array of user UIDs involved in the chat" },
+        { "name": "lastMessage", "type": "string", "description": "Preview of the last message sent" },
+        { "name": "timestamp", "type": "timestamp", "description": "Timestamp of the last message" }
+      ],
+      "access": {
+        "read": "Authenticated users who are in the participants array can read.",
+        "create": "Authenticated users can create chats if they are in the participants array.",
+        "update": "Participants can update the chat (e.g. lastMessage).",
+        "delete": "No deletion."
+      }
+    },
+    {
+      "name": "messages",
+      "path": "chats/{chatId}/messages/{messageId}",
+      "description": "Stores individual messages within a chat.",
+      "fields": [
+        { "name": "senderId", "type": "string", "description": "User ID of the sender" },
+        { "name": "content", "type": "string", "description": "Message content" },
+        { "name": "timestamp", "type": "timestamp", "description": "Creation timestamp" }
+      ],
+      "access": {
+        "read": "Authenticated users who are participants in the parent chat can read.",
+        "create": "Authenticated users who are participants in the parent chat can create messages.",
+        "update": "No updates allowed.",
+        "delete": "No deletion allowed."
+      }
+    }
+  ]
+}

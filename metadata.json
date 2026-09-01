@@ -1,0 +1,6 @@
+{
+  "name": "v-link",
+  "description": "An exclusive platform for VIT Chennai students, combining professional networking with project collaboration.",
+  "requestFramePermissions": ["microphone", "camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

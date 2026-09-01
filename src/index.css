@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Roboto", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-brand-blue: #0A66C2;
+  --color-brand-dark: #0D1117;
+  --color-brand-green: #238636;
+  --color-brand-text: #E6EDF3;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-dark);
+    color: var(--color-brand-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Smooth dark gradient background for entire app exactly matching the theme */
+    background: radial-gradient(circle at 10% 20%, rgba(10, 102, 194, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(35, 134, 54, 0.15) 0%, transparent 40%),
+                var(--color-brand-dark);
+    background-attachment: fixed;
+    overscroll-behavior-y: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-panel-strong {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .glass-blue {
+    background: rgba(10, 102, 194, 0.15);
+    border: 1px solid rgba(10, 102, 194, 0.3);
+    backdrop-filter: blur(12px);
+  }
+  .glass-green {
+    background: rgba(35, 134, 54, 0.15);
+    border: 1px solid rgba(35, 134, 54, 0.3);
+    backdrop-filter: blur(12px);
+  }
+  
+  .markdown-body p {
+    margin-bottom: 0.75rem;
+  }
+  .markdown-body p:last-child {
+    margin-bottom: 0;
+  }
+  .markdown-body ol {
+    list-style-type: decimal;
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .markdown-body ul {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .markdown-body li {
+    margin-bottom: 0.25rem;
+  }
+}
